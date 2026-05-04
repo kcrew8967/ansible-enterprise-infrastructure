@@ -1,0 +1,25 @@
+---
+- name: Create Windows Users and Group
+  hosts: win
+  tasks:
+    - name: Create Finance_Team
+      win_group:
+        name: Finance_Team
+        description: Group for Finance Department
+        state: present
+
+    - name: Create User 1
+      win_user:
+        name: Fin_User1
+        password: Password123!
+        state: present
+        groups:
+          - Finance_Team
+
+    - name: Create User 2
+      win_user:
+        name: Fin_User2
+        password: Password123!
+        state: present
+        groups:
+          - Finance_Team
