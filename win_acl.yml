@@ -1,0 +1,22 @@
+---
+- name: Directory and ACL
+  hosts: win
+  tasks:
+    - name: Create Directory
+      win_file:
+        path: C:\Secure_Finance_Data
+        state: directory
+
+    - name: Configure ACL for Finance_Team
+      win_acl:
+        path: C:\Secure_Finance_Data
+        user: Finance_Team
+        rights: Modify
+        type: allow
+        state: present
+
+    - name: Remove ACL inheritance
+      win_acl_inheritance:
+        path: C:\Secure_Finance_Data
+        state: absent
+        reorganize: true
