@@ -1,0 +1,10 @@
+---
+- name: Deploy Website
+  hosts: ubuntu
+  become: yes
+  tasks:
+    - name: Copy index.html to web server
+      copy:
+        src: ~/playbooks/index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
